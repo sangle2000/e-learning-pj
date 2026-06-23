@@ -3,15 +3,37 @@ import { useState } from "react";
 
 import styles from "./authForm.module.scss"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { httpClient } from "../../../utils/http";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
+    const navigate = useNavigate()
+
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        handleLogin(data)
+    }
+
+    const handleLogin = async (data) => {
+        try {
+            const res = await httpClient.post("/v1/auth/signin", data)
+
+            const accessToken = res.data.accessToken
+            const refreshToken = res.data.refreshToken
+
+            localStorage.setItem("accessToken", accessToken)
+            localStorage.setItem("refreshToken", refreshToken)
+
+            navigate("/")
+        } catch {
+            throw new Error("Sai tài khoản mật khẩu")
+        }
+
+    }
 
     const [showPassword, setShowPassword] = useState(false)
     return (
@@ -34,6 +56,7 @@ export default function SignInForm() {
                                 message: "Email không đúng định dạng"
                             }
                         })}
+                        tabIndex={1}
                     />
                 </div>
                 {
@@ -62,6 +85,7 @@ export default function SignInForm() {
                         placeholder="Enter your password"
                         className={styles.textInput}
                         {...register("password", { required: true })}
+                        tabIndex={2}
                     />
                     <button
                         type="button"

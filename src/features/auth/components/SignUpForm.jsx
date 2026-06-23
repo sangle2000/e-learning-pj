@@ -4,6 +4,7 @@ import { Check, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../schemas/authSchema";
+import { httpClient } from "../../../utils/http";
 
 export default function SignUpForm() {
     const {
@@ -23,7 +24,10 @@ export default function SignUpForm() {
             confirmPassword: ""
         }
     })
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        const { username, email, password } = data
+        httpClient.post("/v1/auth/signup", { username, email, password })
+    }
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [passwordStrength, setPasswordStrength] = useState({
@@ -38,6 +42,7 @@ export default function SignUpForm() {
         }
     });
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const passwordValue = watch("password")
 
     useEffect(() => {
@@ -54,7 +59,9 @@ export default function SignUpForm() {
             if (hasSpecial) score += 1;
         }
 
+        // eslint-disable-next-line no-useless-assignment
         let label = "";
+        // eslint-disable-next-line no-useless-assignment
         let color = "";
         if (score === 0) {
             label = "";

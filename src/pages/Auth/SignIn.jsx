@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Sparkles } from "lucide-react";
 import styles from "./auth.module.scss";
 import SignInForm from "../../features/auth/components/SignInForm";
 
@@ -31,11 +29,7 @@ const GithubIcon = () => (
   </svg>
 );
 
-export default function SignIn({ onLogin }) {
-  const handleSocialLogin = (provider) => {
-
-  };
-
+export default function SignIn() {
   return (
     <div className={styles.authContainer}>
       <div className={styles.authGrid}>
@@ -45,7 +39,6 @@ export default function SignIn({ onLogin }) {
           <div className={styles.showcaseOverlay} />
           <div className={styles.showcaseContent}>
             <div className={styles.showcaseBadge}>
-              <Sparkles size={14} />
               <span>Unlock Infinite Knowledge</span>
             </div>
             <h2 className={styles.showcaseTitle}>
@@ -104,8 +97,6 @@ export default function SignIn({ onLogin }) {
               <button
                 type="button"
                 className={styles.socialBtn}
-                onClick={() => handleSocialLogin("Google")}
-              // disabled={isSubmitting}
               >
                 <GoogleIcon />
                 <span>Google</span>
@@ -113,8 +104,6 @@ export default function SignIn({ onLogin }) {
               <button
                 type="button"
                 className={styles.socialBtn}
-                onClick={() => handleSocialLogin("GitHub")}
-              // disabled={isSubmitting}
               >
                 <GithubIcon />
                 <span>GitHub</span>

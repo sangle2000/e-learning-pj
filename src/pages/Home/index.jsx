@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Terminal, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Terminal } from "lucide-react";
 import styles from "./home.module.scss";
 
 export default function Home() {
@@ -8,7 +8,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className={`${styles.hero} container`}>
         <div className={styles.badge}>
-          <Sparkles size={14} className={styles.badgeIcon} />
           <span>Interactive Code Playground Now Live</span>
         </div>
         

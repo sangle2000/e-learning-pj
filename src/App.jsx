@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/index.jsx";
@@ -44,13 +44,8 @@ function SettingsPage() {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("accessToken"));
   const navigate = useNavigate();
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    navigate("/dashboard");
-  };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -66,8 +61,8 @@ function App() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/signin" element={<SignIn onLogin={handleLogin} />} />
-        <Route path="/signup" element={<SignUp onLogin={handleLogin} />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );

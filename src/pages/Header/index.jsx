@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Menu, X, ChevronDown, User, LogOut, Settings, BookOpen, Layout, Laptop, Bell } from "lucide-react";
+import { Menu, X, ChevronDown, LogOut, Settings, Layout, Bell } from "lucide-react";
 import styles from "./header.module.scss";
+import NameAvatar from "../../components/NameAvatar";
 
 export default function Header({ isLoggedIn, onLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -99,13 +100,14 @@ export default function Header({ isLoggedIn, onLogout }) {
                   onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                   aria-expanded={isProfileDropdownOpen}
                 >
-                  <img 
+                  <NameAvatar name="Lê Hà Thanh Sang" />
+                  {/* <img 
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" 
                     alt="User avatar" 
                     className={styles.avatarImg}
                   />
                   <span className={styles.username}>Alex Dev</span>
-                  <ChevronDown size={16} className={`${styles.chevron} ${isProfileDropdownOpen ? styles.rotate : ""}`} />
+                  <ChevronDown size={16} className={`${styles.chevron} ${isProfileDropdownOpen ? styles.rotate : ""}`} /> */}
                 </button>
 
                 {isProfileDropdownOpen && (
@@ -141,7 +143,7 @@ export default function Header({ isLoggedIn, onLogout }) {
                 Sign In
               </Link>
               <Link to="/signup" className={styles.signUpBtn}>
-                Get Started
+                Sign Up
               </Link>
             </>
           )}

@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Sparkles, Check } from "lucide-react";
 import styles from "./auth.module.scss";
 import SignUpForm from "../../features/auth/components/SignUpForm";
 
@@ -31,7 +29,7 @@ const GithubIcon = () => (
   </svg>
 );
 
-export default function SignUp({ onLogin }) {
+export default function SignUp() {
   return (
     <div className={styles.authContainer}>
       <div className={styles.authGrid}>
@@ -41,7 +39,6 @@ export default function SignUp({ onLogin }) {
           <div className={styles.showcaseOverlay} />
           <div className={styles.showcaseContent}>
             <div className={styles.showcaseBadge}>
-              <Sparkles size={14} />
               <span>Free 7-Day Sandbox Trial</span>
             </div>
             <h2 className={styles.showcaseTitle}>
