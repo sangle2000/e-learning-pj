@@ -1,0 +1,342 @@
+/* Form Fields */
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.generalErrorMsg {
+  padding: 12px;
+  background-color: hsl(0, 100%, 97%);
+  border: 1px solid hsl(0, 50%, 90%);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: hsl(0, 75%, 40%);
+  font-weight: 500;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.passwordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgotLink {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  transition: 
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  .inputIcon {
+    position: absolute;
+    left: 14px;
+    color: var(--color-text-light);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+  }
+
+  .textInput {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    border-radius: var(--radius-md);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .eyeBtn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+
+    &:hover {
+      color: var(--color-text-muted);
+      background-color: var(--color-bg-alt);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  /* Focus rings */
+  &:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+    
+    .inputIcon {
+      color: var(--color-primary);
+    }
+  }
+
+  &.hasError {
+    border-color: #EF4444;
+    
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+
+    .inputIcon {
+      color: #EF4444;
+    }
+  }
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: #EF4444;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.errorTitle {
+  color: #EF4444;
+}
+
+/* Password Strength Indicator */
+.strengthMeterWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 10px;
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+}
+
+.meterTrack {
+  height: 4px;
+  width: 100%;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  width: 0;
+  transition: width 300ms ease, background-color 300ms ease;
+  border-radius: var(--radius-full);
+}
+
+.strengthText {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.strengthCriteria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  margin-top: 4px;
+  
+  .crit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--color-text-light);
+    
+    svg {
+      opacity: 0.3;
+      transform: scale(0.8);
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    &.valid {
+      color: #10B981;
+      font-weight: 500;
+
+      svg {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+/* Checkbox Styles */
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkboxCustom {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: 
+    background-color var(--transition-fast), 
+    border-color var(--transition-fast);
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid var(--color-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+/* Active checked states */
+.checkboxLabel input:checked ~ .checkboxCustom {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  
+  &::after {
+    display: block;
+  }
+}
+
+.checkboxLabel input:focus ~ .checkboxCustom {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha-10);
+}
+
+.checkboxText {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  
+  .innerLink {
+    color: var(--color-primary);
+    font-weight: 600;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Submit Button */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: 
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  svg {
+    transition: transform var(--transition-fast);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+/* CSS Loading Spinner */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary-light);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 800ms linear infinite;
+}
