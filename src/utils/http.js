@@ -6,4 +6,5 @@ export const httpClient = axios.create({
 
 httpClient.interceptors.request.use((config) => {
     console.log(config)
+    return config
 })
